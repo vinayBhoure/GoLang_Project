@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package api;
+
+import "google/protobuf/empty.proto";
+
+// Tweet is a tweet of the system.
+message Tweet {
+    // Id of the tweet. Unique, immutable.
+    string id = 1;    
+    // Content of the tweet.
+    string content = 2;   
+    // User is the id of the user.
+    string user = 3; 
+}
+
+// TweetService is the service to manage tweets.
+service TweetService {
+    // GetTweet gets a tweet by id.
+    rpc GetTweet(GetTweetRequest) returns (Tweet);
+    // ListTweets lists the current tweets of the system.
+    rpc ListTweets(ListTweetRequest) returns (ListTweetResponse);
+    // CreateTweet creates a new tweet.
+    rpc CreateTweet(CreateTweetRequest) returns (Tweet);
+    // UpdateTweet update a tweet.
+    rpc UpdateTweet(UpdateTweetRequest) returns (Tweet);
+    // DeleteTweet deletes a tweet.
+    rpc DeleteTweet(DeleteTweetRequest) returns (google.protobuf.Empty);
+}
+
+message GetTweetRequest {
+    string id = 1;
+}
+
+message ListTweetRequest {
+    int32 page_size = 1;
+    string page_token = 2;    
+    string user = 3;
+}
+
+message ListTweetResponse {    
+    repeated Tweet tweets = 1;
+    string next_page_token = 2;
+}
+
+message CreateTweetRequest {
+    Tweet tweet = 1;
+}
+
+message UpdateTweetRequest {
+    string id = 1;
+    optional string content = 2;
+}
+
+message DeleteTweetRequest {
+    string id = 1;
+}

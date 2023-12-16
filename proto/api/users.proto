@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package api;
+
+import "google/protobuf/empty.proto";
+
+// User is a user of the system.
+message User {
+    // Id of the user. Unique, immutable.
+    string id = 1;
+    // FirstName of the user.
+    string first_name = 2;
+    // LastName of the user.
+    string last_name = 3;    
+}
+
+// UserService is the service to manage users.
+service UserService {
+    // GetUser gets a user by id.
+    rpc GetUser(GetUserRequest) returns (User);
+    // ListUsers lists the current users of the system.
+    rpc ListUsers(ListUserRequest) returns (ListUserResponse);
+    // CreateUser creates a new user.
+    rpc CreateUser(CreateUserRequest) returns (User);
+    // UpdateUser update a user.
+    rpc UpdateUser(UpdateUserRequest) returns (User);
+    // DeleteUser deletes a user.
+    rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty);
+}
+
+message GetUserRequest {
+    string id = 1;
+}
+
+message ListUserRequest {
+    int32 page_size = 1;
+    string page_token = 2;
+}
+
+message ListUserResponse {    
+    repeated User users = 1;
+    string next_page_token = 2;
+}
+
+message CreateUserRequest {
+    User user = 1;
+}
+
+message UpdateUserRequest {
+    string id = 1;
+    optional string first_name = 2;
+    optional string last_name = 3;
+}
+
+message DeleteUserRequest {
+    string id = 1;
+}

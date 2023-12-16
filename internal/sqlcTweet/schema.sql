@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS "tweets"(
+    id SERIAL PRIMARY KEY,
+    content VARCHAR NOT NULL,
+    userid BIGINT NOT NULL 
+);

@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS "users"(
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR NOT NULL,
+    last_name TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "tweets"(
+    id SERIAL PRIMARY KEY,
+    content VARCHAR NOT NULL,
+    "user" INT NOT NULL 
+);
