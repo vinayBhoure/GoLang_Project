@@ -1,0 +1,1 @@
+I developed an API for Twitter Users and Twitter Tweets which have all of their record in the form of tables stored in the Relational Database PostgreSQL, featuring multiple functionalities that perform CRUD (Create, Remove, Update, Delete ) and also include pagination with page offset and page token.
